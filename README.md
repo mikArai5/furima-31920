@@ -15,7 +15,7 @@
 ### Association
 - has_many :items
 - has_many :comments 
-- has_many :buyers
+- has_many :address
 
 
 ## items テーブル
@@ -33,7 +33,7 @@
 ### Association
 - has_many :comments
 - belongs_to :user
-- belongs_to :buyer
+- belongs_to :address
 
 
 ## comments テーブル
@@ -46,17 +46,17 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- belongs_to :buyer
+- belongs_to :address
 
 
-## buyers テーブル
+## addresses テーブル
 | Column        | Type            | Options                        |
 | ------------- | --------------- | ------------------------------ |
-| postal_code   | string          | default: "",null: false        |
+| postal_code   | string          | default: "", null: false       |
 | prefecture_id | integer         | null: false, foreign_key: true |
-| city          | string          | default: ""                    |
-| house_number  | string          | default: ""                    |
-| building_name | string          | default: ""                    |
+| city          | string          | default: "", null: false       |
+| house_number  | string          | default: "", null: false       |
+| building_name | string          | default: "", null: false       |
 | user          | references      | null: false, foreign_key: true |
 | phone_number  | string          | null: false                    |
 
@@ -64,3 +64,13 @@
 - has_many :users
 - has_many :items
 - has_many :comments
+
+## orders テーブル
+| Colum   | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user_id | references | null: false, foreign_key: true |
+| item_id | references | null: false, foreign_key: true |
+
+## Association
+- belongs_to :user
+- belongs_to :item
