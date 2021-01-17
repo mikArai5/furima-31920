@@ -15,25 +15,25 @@
 ### Association
 - has_many :items
 - has_many :comments 
-- has_many :address
+- has_many :orders
 
 
 ## items テーブル
-| Column        | Type            | Options                  |
-| ------------- | --------------- | ------------------------ |
-| item_name     | string          | null: false              |
-| explain       | text            | null: false              |
-| category_id   | integer         | default: "", null: false |
-| condition_id  | integer         | default: "", null: false |
-| fee_id        | integer         | default: "", null: false |
-| prefecture_id | integer         | default: "", null: false |
-| days_id       | integer         | default: "", null: false |
-| price         | integer         | null: false              |
-
+| Column        | Type            | Options                        |
+| ------------- | --------------- | ------------------------------ |
+| item_name     | string          | null: false                    |
+| explain       | text            | null: false                    |
+| category_id   | integer         | default: "", null: false       |
+| condition_id  | integer         | default: "", null: false       |
+| fee_id        | integer         | default: "", null: false       |
+| prefecture_id | integer         | default: "", null: false       |
+| day_id        | integer         | default: "", null: false       |
+| price         | integer         | null: false                    |
+| user          | references      | null: false, foreign_key: true |
 ### Association
 - has_many :comments
 - belongs_to :user
-- belongs_to :address
+- belongs_to :order
 
 
 ## comments テーブル
@@ -57,20 +57,20 @@
 | city          | string          | default: "", null: false       |
 | house_number  | string          | default: "", null: false       |
 | building_name | string          | default: "", null: false       |
-| user          | references      | null: false, foreign_key: true |
+| order         | references      | null: false, foreign_key: true |
 | phone_number  | string          | null: false                    |
 
 ### Association
-- has_many :users
-- has_many :items
 - has_many :comments
+- belongs_to :order
 
 ## orders テーブル
-| Colum   | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| user_id | references | null: false, foreign_key: true |
-| item_id | references | null: false, foreign_key: true |
+| Colum | Type       | Options                        |
+| ----- | ---------- | ------------------------------ |
+| user  | references | null: false, foreign_key: true |
+| item  | references | null: false, foreign_key: true |
 
 ## Association
 - belongs_to :user
 - belongs_to :item
+- has_one :address
