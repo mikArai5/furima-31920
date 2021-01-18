@@ -53,7 +53,7 @@
 | Column        | Type            | Options                        |
 | ------------- | --------------- | ------------------------------ |
 | postal_code   | string          | default: "", null: false       |
-| prefecture_id | integer         | null: false, foreign_key: true |
+| prefecture_id | integer         | null: false,                   |
 | city          | string          | default: "", null: false       |
 | house_number  | string          | default: ""                    |
 | building_name | string          | default: "", null: false       |
