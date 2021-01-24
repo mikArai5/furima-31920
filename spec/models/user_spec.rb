@@ -49,6 +49,21 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include 'Password Include both letters and numbers'
       end
+      it 'passwordは英語のみでは登録できない' do
+        @user.password = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include 'Password Include both letters and numbers'
+      end
+      it 'passwordは数字のみでは登録できない' do
+        @user.password = '111111'
+        @user.valid?
+        expect(@user.errors.full_messages).to include 'Password Include both letters and numbers'
+      end
+      it 'passwordは全角では登録できない' do
+        @user.password = 'ａｂｃｄｅｆ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include 'Password Include both letters and numbers'
+      end
       it 'password_confirmationとpasswordが一致しないと登録できない' do
         @user.password = '123456'
         @user.password_confirmation = '1234567'
