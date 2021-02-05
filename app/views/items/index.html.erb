@@ -125,20 +125,16 @@
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <ul class='item-lists'>
-
-
       <% @items.each do |item| %>
         <li class='list'>
-          <%= link_to items_path, method: :get do %>
+          <%= link_to item_path(item.id), method: :get do %>
             <div class='item-img-content'>
-                  <%= image_tag item.image.variant(resize: '500x500'), class: 'item-img' if item.image.attached? %>
-
-                  <% if @item.present? %>
-                    <div class='sold-out'>
-                      <span>Sold Out!!</span>
-                    </div>
-                  <% end %>
-
+              <%= image_tag item.image.variant(resize: '500x500'), class: 'item-img' if item.image.attached? %>
+                <% if @item.present? %>
+                  <div class='sold-out'>
+                    <span>Sold Out!!</span>
+                  </div>
+                <% end %>
                 <div class='item-info'>
                   <h3 class='item-name'>
                     <%= link_to item.item_name %>
@@ -150,10 +146,11 @@
                       <span class='star-count'>0</span>
                     </div>
                   </div>
-              </div>
-            <% end %>
-          </li>
-       <% end %>      
+                </div>
+            </div>
+          <% end %>
+        </li>
+      <% end %>      
 
 
 
