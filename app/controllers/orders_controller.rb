@@ -4,8 +4,10 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @user_order = UserOrder.new
     @item = Item.find(params[:item_id])
-    if @item.order.blank? || current_user == @item.user
+    if @item.order.present? || current_user == @item.user
       redirect_to root_path
+    else
+      render 'index'
     end
   end
 
