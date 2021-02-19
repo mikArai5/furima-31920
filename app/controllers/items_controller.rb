@@ -24,6 +24,9 @@ def index
   end
 
   def edit
+    unless @item.order.blank? && @item.user_id == current_user.id 
+      redirect_to root_path
+    end
   end
   
   def update
