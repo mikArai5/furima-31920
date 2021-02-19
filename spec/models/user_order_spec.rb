@@ -3,9 +3,7 @@ require 'rails_helper'
 RSpec.describe UserOrder, type: :model do
   describe '購入情報の保存' do
     before do
-      @user_order = FactoryBot.build(:user_order)
-      @user = FactoryBot.build(:user)
-      @item = FactoryBot.build(:item)
+      @user_order = FactoryBot.build(:user_order, user_id: :user, item_id: :item )
     end
 
     describe '配送先入力' do
