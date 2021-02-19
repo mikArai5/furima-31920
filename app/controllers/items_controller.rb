@@ -53,9 +53,8 @@ def index
   end
   
   def conditional_blanch
-    unless @item.user_id == current_user.id == @item.order.blank?
+    unless @item.order.blank? && @item.user_id == current_user.id 
       redirect_to root_path
     end
   end
-
 end

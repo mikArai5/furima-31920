@@ -1,14 +1,10 @@
 class OrdersController < ApplicationController
 before_action :authenticate_user!
 before_action :set_item, only:[:index, :create]
+before_action :conditional_blanch, only:[:index, :create]
 
   def index
     @user_order = UserOrder.new
-    if @item.order.present? || current_user == @item.user
-      redirect_to root_path
-    else
-      render 'index'
-    end
   end
 
   def create
@@ -40,4 +36,10 @@ before_action :set_item, only:[:index, :create]
     @item = Item.find(params[:item_id])
   end
   
+  def conditional_blanch
+    if @item.order.present? || current_user == @item.user
+      redirect_to root_path
+    end
+  end
+
 end
