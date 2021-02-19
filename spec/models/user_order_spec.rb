@@ -4,6 +4,8 @@ RSpec.describe UserOrder, type: :model do
   describe '購入情報の保存' do
     before do
       @user_order = FactoryBot.build(:user_order)
+      @user = FactoryBot.build(:user)
+      @item = FactoryBot.build(:item)
     end
 
     describe '配送先入力' do
