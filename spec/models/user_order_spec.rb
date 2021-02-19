@@ -24,7 +24,7 @@ RSpec.describe UserOrder, type: :model do
           expect(@user_order.errors.full_messages).to include "Postal code can't be blank"
         end
         it '郵便番号にはハイフンがないと登録できない' do
-          @user_order.postal_code = 1234567
+          @user_order.postal_code = "1234567"
           @user_order.valid?
           expect(@user_order.errors.full_messages).to include "Postal code Input correctly"
         end
@@ -57,6 +57,11 @@ RSpec.describe UserOrder, type: :model do
           @user_order.phone_number = '090123456789'
           @user_order.valid?
           expect(@user_order.errors.full_messages).to include "Phone number Input correctly"
+        end
+        it '電話番号が全角数字では登録できない' do
+          @user_order.phone_number = '０９０１２３４５６７８'
+          @user_order.valid?
+          expect(@user_order.errors.full_messages).to include "Phone number Input only number"
         end
         it 'tokenが空では登録できないこと' do
           @user_order.token = nil
